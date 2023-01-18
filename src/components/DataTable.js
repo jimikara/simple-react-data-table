@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import DataTableRow from "./DataTableRow";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import DataTableRow from './DataTableRow'
 
-export default function DataTable(props) {
+export default function DataTable({ tableData, setTableData }) {
   const [showTooltip, setShowTooltip] = useState(false)
-  const [sortPreferences, setSortPreferences] = useState({ order: 'asc', byValue: 'points'})
+  const [sortPreferences, setSortPreferences] = useState({ order: 'asc', byValue: 'points' })
 
   const sortTableData = (order = 'desc', byValue = 'goalsDiff') => {
-    if (!props.tableData || props.tableData.length === 0) return
+    if (!tableData || tableData?.length === 0) return
 
     setSortPreferences({ order, byValue })
 
-    return props.tableData.sort((a, b) => {
-        const sortOrder = order === 'desc' ? [a, b] : [b, a]
+    return tableData.sort((a, b) => {
+      const sortOrder = order === 'desc' ? [a, b] : [b, a]
 
-        return sortOrder[0][byValue] - sortOrder[1][byValue]
-      }
-    )
+      return sortOrder[0][byValue] - sortOrder[1][byValue]
+    })
   }
 
   const setOrderDescending = () => {
-    props.setTableData([...sortTableData()])
+    setTableData([...sortTableData()])
   }
 
   const setOrderAscending = () => {
-    props.setTableData([...sortTableData('asc')])
+    setTableData([...sortTableData('asc')])
   }
 
   const setInitialOrder = () => {
-    props.setTableData([...sortTableData('asc', 'points')])
+    setTableData([...sortTableData('asc', 'points')])
   }
 
   const isSortActive = (order, byValue) => {
@@ -51,49 +51,46 @@ export default function DataTable(props) {
                 <th>Points</th>
                 <th
                   onMouseEnter={() => setShowTooltip(true)}
-                  onMouseLeave={() => setShowTooltip(false)}
-                >Goal Diff'
+                  onMouseLeave={() => setShowTooltip(false)}>
+                  Goal Diff&apos;
                   <span
                     href="#"
-                    role='button'
+                    role="button"
                     onClick={setOrderDescending}
-                    className={`col-sort-icon ${isSortActive('desc', 'goalsDiff') ? 'active' : '' }`}
-                    title="sort descending"
-                  >
+                    className={`col-sort-icon ${isSortActive('desc', 'goalsDiff') ? 'active' : ''}`}
+                    title="sort descending">
                     &#11015;
                   </span>
                   <span
                     href="#"
-                    role='button'
+                    role="button"
                     onClick={setOrderAscending}
-                    className={`col-sort-icon ${isSortActive('asc', 'goalsDiff')  ? 'active' : '' }`}
-                    title="sort ascending"
-                  >
+                    className={`col-sort-icon ${isSortActive('asc', 'goalsDiff') ? 'active' : ''}`}
+                    title="sort ascending">
                     &#11014;
                   </span>
-                  {
-                    showTooltip && <span className="tooltip">Sort by Goal Difference</span>
-                  }
+                  {showTooltip && <span className="tooltip">Sort by Goal Difference</span>}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {
-                props.tableData.map(item => (
-                  <DataTableRow key={item.team.id} rowData={item} />
-                ))
-              }
+              {tableData.map((item) => (
+                <DataTableRow key={item.team.id} rowData={item} />
+              ))}
             </tbody>
           </table>
-          <button onClick={setInitialOrder}>
-            Set initial order
-          </button>
+          <button onClick={setInitialOrder}>Set initial order</button>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 DataTable.defaultProps = {
   tableData: []
+}
+
+DataTable.propTypes = {
+  tableData: PropTypes.array.isRequired,
+  setTableData: PropTypes.func.isRequired
 }

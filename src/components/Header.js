@@ -1,10 +1,18 @@
-export default function Header(props) {
+import React from 'react'
+import PropTypes from 'prop-types'
+
+export default function Header({ title, subheading }) {
   return (
     <header>
       <div>
-        <h1>{ props.competitionData?.name } Standings</h1>
-        <span>{ props.competitionData?.season }</span>
+        <h1>{title} Standings</h1>
+        <span>{subheading}</span>
       </div>
     </header>
   )
+}
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  subheading: PropTypes.string
 }

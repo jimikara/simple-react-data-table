@@ -6,19 +6,22 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   font-size: 10px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 header {
-  margin-bottom: 2.4rem;
+  height: 11rem;
   background-color: #e5e5f7;
   opacity: 0.9;
-  background-image:  radial-gradient(var(--main-color) 0.5px, transparent 0.5px), radial-gradient(var(--main-color) 0.5px, #e4fdf5 0.5px);
+  background-image: radial-gradient(var(--main-color) 0.5px, transparent 0.5px),
+    radial-gradient(var(--main-color) 0.5px, #e4fdf5 0.5px);
   background-size: 20px 20px;
-  background-position: 0 0,10px 10px;
+  background-position: 0 0, 10px 10px;
   padding: 2.4rem;
   font-size: 1.4rem;
   display: flex;
@@ -31,7 +34,7 @@ header > div {
 
 .container {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh -11rem);
   display: flex;
   justify-content: center;
   padding-top: 3.6rem;
@@ -41,7 +44,7 @@ header > div {
 
 h1 {
   font-weight: 500;
-  margin: 0 0 0.6rem 0; 
+  margin: 0 0 0.6rem 0;
 }
 
 .col-sort-icon {
@@ -50,7 +53,7 @@ h1 {
 }
 
 .col-sort-icon.active {
-  filter: invert(1)
+  filter: invert(1);
 }
 
 .tooltip {
@@ -62,7 +65,7 @@ h1 {
 table {
   width: 74rem;
   margin-bottom: 2.4rem;
-  border-spacing:0;
+  border-spacing: 0;
   border-collapse: collapse;
 }
 
@@ -70,7 +73,8 @@ th {
   text-align: left;
 }
 
-th, td {
+th,
+td {
   min-height: 3.6rem;
   padding: 1.2rem;
   border-bottom: 1px solid var(--main-color);
